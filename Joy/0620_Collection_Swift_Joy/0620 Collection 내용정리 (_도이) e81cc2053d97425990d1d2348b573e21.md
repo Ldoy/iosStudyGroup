@@ -1,0 +1,95 @@
+# 0620 Collection 내용정리 (_도이)
+
+왜 collection type을 사용하는가? => 값의 타입에 대한 확신성이 있기 때문.
+
+이 collection type은 어떻게 구현되었는가? -> Generic 으로 구현되어 있음  :  Generic : 타입에 상관없이 구현하도록 함수, 타입등을 정의하는 code
+
+컬렉션 타입을 상수 혹은 변수로 assign하느냐에 따라 mutability가 결정된다. 추후 변경되지 않아도 된다면 상수로 정의하는 것이 좋음
+
+Array<Element> 혹은 [Element]로 정의
+
+Array의 init은 무엇이 있는지 궁금해서 정리해봄
+
+![0620%20Collection%20%E1%84%82%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%85%E1%85%B5%20(_%E1%84%83%E1%85%A9%E1%84%8B%E1%85%B5)%20e81cc2053d97425990d1d2348b573e21/Untitled.png](0620%20Collection%20%E1%84%82%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%85%E1%85%B5%20(_%E1%84%83%E1%85%A9%E1%84%8B%E1%85%B5)%20e81cc2053d97425990d1d2348b573e21/Untitled.png)
+
+Array의 Element 의 자료형이 같다면 plus operator 사용 가능(+)  & addition asssignment operator(+=)도 사용 가능! 
+
+```swift
+shopingList += ["Baking Powder"]
+```
+
+Array literal을 가진 상태로 Array만들어 보기 (init과 동시에 요소가 포함된 형태)
+
+- type inference로 배열의 타입추론 가능
+
+Enumerate method!
+
+`enumerated()` 는 배열의 모든 요소의 정수 인덱스가 필요할 때 사용. 이 메소드를 사용하면 `tuple`형태 (정수인덱스, 아이템) 형태로 반환함
+
+```swift
+for (index, value) in shoppingList.enumerated() {
+print("Item \(index + 1): \(value)")
+}
+// Item 1: Six eggs
+// Item 2: Milk
+// Item 3: Flour
+// Item 4: Baking Powder
+// Item 5: Bananas
+```
+
+![0620%20Collection%20%E1%84%82%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%85%E1%85%B5%20(_%E1%84%83%E1%85%A9%E1%84%8B%E1%85%B5)%20e81cc2053d97425990d1d2348b573e21/Untitled%201.png](0620%20Collection%20%E1%84%82%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%85%E1%85%B5%20(_%E1%84%83%E1%85%A9%E1%84%8B%E1%85%B5)%20e81cc2053d97425990d1d2348b573e21/Untitled%201.png)
+
+→ Array로 되는지 확인해 보기 
+
+Set
+
+- Set을 사용하는 이유 : 검색속도가 빠르다. hashin때문에..?
+- hashable한 데이터만 들어갈 수 있다. 스위프트의 베이직 타입(int, String등)은 다 hashable이며 연관값이 없는 enum도 가능하다.
+- 문법 축약이 없다
+
+    ```swift
+    var letters = Set<Character>() // 빈배역 
+    var favoriteGenres: Set<String> = ["Rock", "Classical", "Hip hop"]
+    var favoriteGenres: Set = ["Rock", "Classical", "Hip hop"]  // 타입추론
+    ```
+
+- [hashable](https://zeddios.tistory.com/498)???
+
+- set사이의 관계
+    - super set :
+    - sub set : 속하는 것
+    - disjoint : 하나도 겹치는게 없음
+
+Dictionary
+
+- 순서없음. key로 찾아야 함.
+- key를 이용해 value를 찾는 경우 key 가 없을 수도 있기 때문에 optional
+
+```swift
+var namesOfIntegers: [Int: String] = [:]
+```
+
+- value 를 바꾸기  :  subscript or `updateValue(_:forKey:)`, `removeValue(forKey:)`
+
+```swift
+airports["LHR"] = "London"
+airports["LHR"] = "London Heathrow"
+
+//updateValue(_:forKey:)
+if let oldValue = airports.updateValue("Dublin Airport", forKey: "DUB") {
+    print("The old value for DUB was \(oldValue).")
+}
+// Prints "The old value for DUB was Dublin."
+
+//removeValue(forKey:)
+for airportCode in airports.keys {
+	print("Airport code: \(airportCode)")
+}
+```
+
+- key혹은 value만 모아져 있는 array로 바꾸기
+
+```swift
+let airportCodes = [String](airports.keys)
+let airportNames = [String](airports.values)
+```

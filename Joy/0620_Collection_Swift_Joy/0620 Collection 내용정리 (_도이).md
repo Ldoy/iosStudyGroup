@@ -10,7 +10,7 @@ Array<Element> 혹은 [Element]로 정의
 
 Array의 init은 무엇이 있는지 궁금해서 정리해봄
 
-![init](iosStudyGroup/Joy/0620_Collection_Swift_Joy/Creates a new, empty array copy.png)
+![init] (iosStudyGroup/Joy/0620_Collection_Swift_Joy/Creates a new, empty array copy.png)
 
 
 Array의 Element 의 자료형이 같다면 plus operator 사용 가능(+)  & addition asssignment operator(+=)도 사용 가능! 

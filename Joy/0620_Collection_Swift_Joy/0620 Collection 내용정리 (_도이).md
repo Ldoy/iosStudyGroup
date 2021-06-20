@@ -9,8 +9,8 @@
 Array<Element> 혹은 [Element]로 정의
 
 Array의 init은 무엇이 있는지 궁금해서 정리해봄
+	
 
-![0620%20Collection%20%E1%84%82%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%85%E1%85%B5%20(_%E1%84%83%E1%85%A9%E1%84%8B%E1%85%B5)%20e81cc2053d97425990d1d2348b573e21/Untitled.png](0620%20Collection%20%E1%84%82%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%85%E1%85%B5%20(_%E1%84%83%E1%85%A9%E1%84%8B%E1%85%B5)%20e81cc2053d97425990d1d2348b573e21/Untitled.png)
 
 Array의 Element 의 자료형이 같다면 plus operator 사용 가능(+)  & addition asssignment operator(+=)도 사용 가능! 
 

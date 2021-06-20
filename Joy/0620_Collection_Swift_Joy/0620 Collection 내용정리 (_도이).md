@@ -9,6 +9,10 @@
 Array<Element> 혹은 [Element]로 정의
 
 Array의 init은 무엇이 있는지 궁금해서 정리해봄
+	
+	<figure>
+    <img src="./Joy/0620_Collection_Swift_Joy/Untitled.png">
+</figure>
 
 ![array init](./Joy/0620_Collection_Swift_Joy/Untitled.png)
 

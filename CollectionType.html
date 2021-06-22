@@ -1,0 +1,671 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Collection Type</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="f4b0d97b-10f9-4fb4-958f-9ea792fba0ff" class="page sans"><header><h1 class="page-title">Collection Type</h1></header><div class="page-body"><ul id="6596eb42-8735-405d-9437-ab9df2cc3a61" class="bulleted-list"><li>컬렉션은 구조체로 구현된 값 형식이기 때문에 값이 사용될 때마다 복사되어야 하는데, 반드시 복사가 필요한 경우에만 실제 복사를 수행한다. 이를 copy on write 최적화라고 한다.</li></ul><ul id="d03860da-8ad8-4c30-a88e-32ce18780757" class="bulleted-list"><li>컬렉션이 변경되지 않는 한 항상 동일한 데이터를 사용하다가, 특정 시점에 컬렉션을 변경하면 그때 복사본을 생성하고 변경사항을 저장한다.</li></ul><h1 id="c01d7545-3a0d-4542-a6ab-6435f9d73944" class="">Array</h1><h2 id="a8c742c1-bc8f-4a66-bf56-6ee7d8dcf03b" class="">생성</h2><pre id="d597a4ab-e0b3-4a8d-93ec-df91dfa9af23" class="code"><code>var someInt = [Int]()</code></pre><h2 id="32753d4d-21a7-4340-97cc-7b10a8cf038d" class="">기본 값으로 생성</h2><pre id="ab952886-7ab5-4129-ab93-745bf5ca3d42" class="code"><code>var threeDouble = Array(repeating: 0.0, count: 3)
+// [0.0, 0.0, 0.0]</code></pre><h2 id="bf933fa4-9f75-4230-bbbe-42d244db57fb" class="">다른 배열을 추가한 배열의 생성</h2><ul id="38699c99-83be-491c-93e3-b258c0223a58" class="bulleted-list"><li>+ 연산자를 이용해 배열을 합칠 수 있습니다.</li></ul><pre id="ed7c5449-6e54-42f5-b5a1-55ff36c2bc49" class="code"><code>var anotherThreeDoubles = Array(repeating: 2.5, count: 3)
+
+var sixDoubles = threeDoubles + anotherThreeDoubles
+// sixDoubles : [0.0, 0.0, 0.0, 2.5, 2.5, 2.5]</code></pre><h2 id="2c394e3d-13d4-4e1a-8bc1-3e26b6d88e52" class="">리터럴을 이용한 배열의 생성</h2><pre id="99125525-8cec-4fb4-819d-8e6ead0b9288" class="code"><code>var shoppingList = [&quot;Eggs&quot;, &quot;Milk&quot;]</code></pre><h2 id="bc451cd4-fcbd-4fea-a3a3-21723443ce16" class="">배열의 접근 및 변환</h2><ul id="05a9e056-6b0b-4c58-9fa3-833892b0517c" class="bulleted-list"><li>array.count : 배열의 원소 개수 확인.</li></ul><ul id="88aaa52a-e95d-4241-aa82-fb981ae8fc41" class="bulleted-list"><li>array.isEmpty : 배열이 비었는지 확인.</li></ul><ul id="600e0226-b3b5-4456-9189-1aa7818db92f" class="bulleted-list"><li>array.append(원소) : 배열에 원소 추가.</li></ul><pre id="ffb13044-f045-4641-8ee2-a133d7fbb224" class="code"><code>shoppingList += [&quot;Baking Powder&quot;]
+// shoppingList.count = 4
+shoppingList += [Chocolate Spread&quot;, &quot;Cheese&quot;, &quot;Butter&quot;]
+// shoppingList.count = 7</code></pre><ul id="9b8b309c-d25a-4be8-9923-fa6ad214e987" class="bulleted-list"><li>array[0], array[4..6] : 배열의 특정 위치의 원소에 접근.</li></ul><pre id="6912c271-07a3-4973-941b-ad111ea80efa" class="code"><code>shoppingList[4..6] = [&quot;Bananas&quot;, &quot;Apples&quot;]
+// 4, 5, 6번째 인덱스 아이템을 Banana, Apples로 변환
+// 즉, 아이템 3개가 2개로 줄었다.</code></pre><ul id="315ec285-0694-4edd-9770-51575f97d2d7" class="bulleted-list"><li>array.insert(원소, at: 인덱스) : 특정 위치에 원소 추가</li></ul><pre id="37179069-cb97-4b04-a608-5a7bad3d23a2" class="code"><code>shoppingList.insert(&quot;Maple Syrup&quot;, at:0)</code></pre><ul id="d61e12e4-1e03-4f56-922e-a0d4c9c06e9a" class="bulleted-list"><li>array.remove(at: 인덱스) : 특정 위치에 원소 삭제. 삭제값을 반환함.</li></ul><pre id="64ea57ae-efd4-4af1-ad78-cd7845d20240" class="code"><code>let mapleSyrup = shoppingList.remove(at: 0)
+let apples = shoppingList.removeLast()</code></pre><h2 id="3b38e66f-b033-4aac-a66b-69ae18f98e2d" class="">배열의 순회</h2><ul id="9b1d5307-6188-4c07-bc49-c289b554279c" class="bulleted-list"><li>배열의 값과 인덱스가 필요할 때는 enumerated() 메소드를 사용.</li></ul><pre id="080d97c9-5d8e-4414-8ed7-f22aa35bd000" class="code"><code>for (index, value) in shoppingList.enumerated() {
+    print(&quot;Item \(index + 1): \(value)&quot;)
+}
+// Item 1: Six eggs
+// Item 2: Milk
+// Item 3: Flour
+// Item 4: Baking Powder
+// Item 5: Bananas</code></pre><p id="4c098948-a2fc-48c8-aed1-d5237dde9c92" class="">
+</p><h1 id="b2fba723-ae0e-483e-a1c6-ca07cb16beed" class="">Set</h1><ul id="26a5afd9-dac2-4774-87df-fcbdec605bcd" class="bulleted-list"><li>수학에서의 &#x27;집합&#x27; 개념. 집합의 특징 이용할 수 있음. </li></ul><ul id="1464df36-8cf2-43c9-aa35-8580f36e07b9" class="bulleted-list"><li>중복을 허용하지 않음. </li></ul><ul id="a041c623-5cb5-43b0-98c9-34c8079581fc" class="bulleted-list"><li>정렬을 하면 배열이 반환.</li></ul><ul id="2c87eb36-1a41-44de-8ed3-d30d5afbcd9c" class="bulleted-list"><li>Set 형태로 저장되기 위해서는 반드시 타입이 hashable이어야만 합니다. Swift에서 String, Int, Double, Bool 같은 기본 타입은 기본적으로 hashable입니다. Swift에서 Set 타입은 Set으로 선언합니다.</li></ul><ul id="b78e95f4-d1da-484b-a967-171448acfeb4" class="bulleted-list"><li>정렬 순서보다 검색 속도가 중요할 때 사용.
+⇒ 검색 속도가 빠른 이유는? Hashing(요소의 유효성을 판단하고 빠른 검색을 위해 사용하는 값) 때문.</li></ul><ul id="1c12cace-9c69-4514-a2c4-09ecb5e30c6d" class="bulleted-list"><li>Set를 타입으로 명시해주지 않으면 배열로 지정됨.</li></ul><ul id="46cbbb7f-b2ae-4615-87cd-7b5c817d7edb" class="bulleted-list"><li>배열과 Set 차이<ol id="8665d0b9-3071-479e-974d-a071e202ee78" class="numbered-list" start="1"><li>배열은 순서가 있지만, Set은 순서가 없다.</li></ol><ol id="4e59aeca-608b-4b38-9168-0e2e5f0dd263" class="numbered-list" start="2"><li>배열은 중복 가능하지만, Set은 중복이 불가능하다.</li></ol><ol id="334b9f54-fd2c-493e-befd-2693bbf9e533" class="numbered-list" start="3"><li>Set은 배열처럼 인덱스를 사용하지 않음.</li></ol></li></ul><h2 id="639c7836-602f-4e4a-82d1-e688a3d14c1e" class="">생성</h2><pre id="528ff805-affa-4476-910c-57d8d9411dc7" class="code"><code>var letters = Set&lt;Character&gt;()</code></pre><h2 id="80cfde6d-737b-4054-8070-61aa581a2039" class="">배열 리터럴을 이용한 Set 생성</h2><pre id="a648e90b-addb-4ee2-8df1-4de382cd65f3" class="code"><code>var favoriteGenres: Set = [&quot;Rock&quot;, &quot;Classical&quot;, &quot;Hip hop&quot;]</code></pre><h2 id="5d288224-4424-4e08-9e03-5b9a8a468d45" class="">Set의 접근과 변경</h2><ul id="8b7151a0-807d-4274-abbe-ec9c78b18f65" class="bulleted-list"><li>set.count : set의 원소 개수 확인.</li></ul><ul id="fe15b996-dc06-4347-b86f-e84818475a3a" class="bulleted-list"><li>set.isEmpty : set가 비었는지 확인.</li></ul><ul id="26d8963c-8ed4-4d8a-b126-c06659fc97f6" class="bulleted-list"><li>set.insert(원소) : set에 원소 추가.</li></ul><ul id="bd3dde27-d861-423c-9fc3-646485f7bbc4" class="bulleted-list"><li>set.contain(원소) : set가 원소를 갖고 있는지 확인.</li></ul><ul id="739b865e-cdce-4af0-8099-42be1f14df40" class="bulleted-list"><li>set.remove(원소) : set에 원소 삭제.</li></ul><h2 id="d5df0368-f23d-4963-a835-d130ef8503d5" class="">Set의 명령</h2><figure id="547817d2-26fb-4fe5-b894-32c4276e3f25" class="image"><a href="Collection%20Type%20547817d226fb4fe5b89432c4276e3f25/C7EEA172-39EF-49BA-876D-CD2A72D5E2DC.png"><img style="width:1122px" src="Collection%20Type%20547817d226fb4fe5b89432c4276e3f25/C7EEA172-39EF-49BA-876D-CD2A72D5E2DC.png"/></a></figure><ul id="cf9d758c-8cc5-44f3-994a-52a4cbdaa5b6" class="bulleted-list"><li>a.intersection(b) : 교집합.</li></ul><ul id="17fdb29a-39b2-4f28-98a7-a5a820e1acd6" class="bulleted-list"><li>a.symmetricDifference(b) : 합집합 - 교집합,</li></ul><ul id="0d184495-f1cb-4a7d-a959-8dec2218b621" class="bulleted-list"><li>a.union(b) : 합집합</li></ul><ul id="6b3b7648-8bbb-4cf5-960d-90b3289ba4ed" class="bulleted-list"><li>a.subtracting(b) : 차집합.</li></ul><pre id="d3aeeb43-5f7c-49cd-9228-b8d36b4390b1" class="code"><code>let oddDigits: Set = [1, 3, 5, 7, 9]
+let evenDigits: Set = [0, 2, 4, 6, 8]
+let singleDigitPrimeNumbers: Set = [2, 3, 5, 7]
+
+oddDigits.union(evenDigits).sorted()
+// [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+oddDigits.intersection(evenDigits).sorted()
+// []
+oddDigits.subtracting(singleDigitPrimeNumbers).sorted()
+// [1, 9]
+oddDigits.symmetricDifference(singleDigitPrimeNumbers).sorted()
+// [1, 2, 9]</code></pre><h2 id="78627f67-27f4-417f-adcc-5576d00e38d6" class="">Set의 맴버십과 동등 비교</h2><ul id="ca44b1bd-f731-49e4-81ef-cfbeac6377f7" class="bulleted-list"><li>Set a는 Set b의 SuperSet.</li></ul><ul id="d921dffd-ca73-4574-8238-8d40739f1e8b" class="bulleted-list"><li>Set b는 Set a의 SubSet.</li></ul><ul id="788e71ab-bed5-4d51-a88f-227c4536271e" class="bulleted-list"><li>Set b와 Set a는 disjoint.</li></ul><figure id="1ea2bfa1-a20e-4378-ad53-f77d1b799617" class="image"><a href="Collection%20Type%20547817d226fb4fe5b89432c4276e3f25/setEulerDiagram_2x.png"><img style="width:1103px" src="Collection%20Type%20547817d226fb4fe5b89432c4276e3f25/setEulerDiagram_2x.png"/></a></figure><ul id="2aa61e76-2d53-4f87-82ff-01c94b3d9d85" class="bulleted-list"><li>== : 두 Set의 요소가 전부 같은지.</li></ul><ul id="160e2ee1-6d9a-4532-bf89-cc31db14c603" class="bulleted-list"><li>b.isSubset(of: a) : b는 a의 subset인지.</li></ul><ul id="19d4d45b-f022-46e8-936f-0687256c1008" class="bulleted-list"><li>a.isSuperset(of: b) : a는 b의 superset인지.</li></ul><ul id="ac5228de-375a-49ea-a87f-30daf8805580" class="bulleted-list"><li>b.isDisjoint(of: c) : b와 c는 disjoint인지. 둘 사이의 공통값이 없을 경우 true를 반환.</li></ul><pre id="4e9c3b66-3453-47d2-b04f-29efaaf029ce" class="code"><code>let houseAnimals: Set = [&quot;🐶&quot;, &quot;🐱&quot;]
+let farmAnimals: Set = [&quot;🐮&quot;, &quot;🐔&quot;, &quot;🐑&quot;, &quot;🐶&quot;, &quot;🐱&quot;]
+let cityAnimals: Set = [&quot;🐦&quot;, &quot;🐭&quot;]
+
+houseAnimals.isSubset(of: farmAnimals)
+// 참
+farmAnimals.isSuperset(of: houseAnimals)
+// 참
+farmAnimals.isDisjoint(with: cityAnimals)
+// 참</code></pre><p id="ea3565a8-b26e-484d-abcc-e283a61b50b4" class="">
+</p><h1 id="3f46cbe2-0afd-4ecb-a004-346ccdc1caab" class="">Dictionary</h1><ul id="016b1f0d-b515-49aa-8a5b-7d5af1f7c7ca" class="bulleted-list"><li>&#x27;key&#x27;로는 검색할 수 있지만, &#x27;값&#x27;으로는 검색할 수 없음 → nil 반환.</li></ul><ul id="ab178181-fcda-4c24-9cc8-f216c3a545c3" class="bulleted-list"><li>key가 존재하지 않으면 새로운 요소를 추가(insert), key가 존재하면 기존값을 교체(update)
+⇒ update + insert = upsert라고 함.</li></ul><h2 id="7f3b0923-1cf8-4fbd-8848-141de6df8246" class="">빈 Dictionary의 생성</h2><pre id="9f305836-6d6d-49d7-8207-0160c3cb8571" class="code"><code>var namesOfIntegers = [Int: String]()</code></pre><h2 id="5cefb10c-af6b-4414-b502-d89177c0c781" class="">리터럴을 이용한 Dictionary의 생성</h2><pre id="371d29ea-c2e1-43e2-b70b-00fb214649d7" class="code"><code>var airports: [String: String] = = [&quot;YYZ&quot;: &quot;Toronto Pearson&quot;, &quot;DUB&quot;: &quot;Dublin&quot;]</code></pre><h2 id="011f1bb1-4177-4032-9e33-62d6e17998da" class="">Dictionary의 접근과 변경</h2><ul id="a4c1ed79-1867-46ef-bf27-2cc2dbe9fad2" class="bulleted-list"><li>dictionary.count : 딕셔너리의 key와 값 개수 확인.</li></ul><ul id="55660d0c-cdb6-493f-a8fc-fa2381b2ee26" class="bulleted-list"><li>dictionary.isEmpty : 딕셔너리가 비었는지 확인.</li></ul><ul id="d7f09dd3-9242-4289-a57e-d414e8b3297a" class="bulleted-list"><li>값 할당 : key와 값을 함께.</li></ul><pre id="ed924712-6d8e-4eba-85f1-fee96c1c5916" class="code"><code>airports[&quot;LHR&quot;] = &quot;London&quot;</code></pre><ul id="b8b965b4-607c-4a2e-9490-27f48292d215" class="bulleted-list"><li>혹시 key에 없는 값을 검색할 때 nil을 반환하지 않게 default 값 지정해줄 수 있음.</li></ul><pre id="18e66a95-13f6-4670-93a8-e819ea72fefe" class="code"><code>let a = words[&quot;E&quot;, default: &quot;Empty&quot;]
+//어떤 경우에도 nil이 아닌 문자열을 리턴</code></pre><p id="a19e5a28-eb59-4443-a6f9-003de97baf60" class="">
+</p></div></article></body></html>

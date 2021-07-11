@@ -1,3 +1,4 @@
+import Foundation
 import UIKit
 
 var x = 10
@@ -5,23 +6,13 @@ var y = 20
 
 var xPlusY1: Int {
 	get {
-		return x + y
+
 	}
 }
 
-xPlusY1
-// 1. x와 y 프로퍼티의 합이 나오도록 하기
+// 1. 위의 xPlusY1 을 출력했을 때 x와 y 프로퍼티의 합이 나오도록 하기
+//2. xPlusY1의 값에 50을 할당하는 경우 변수 x 의 값도 동일하게 바뀌도록 구현하기
 
-
-//2. xPlusY1의 값에 50을 할당하는 경우 변수 x 의 값도 동일하게 바뀌도록 구현
-
-var xPlusY1: Int {
-	get {
-		return x + y
-	} set {
-		x = newValue
-	}
-}
 
 var x2 = 10
 class StudyTimeCounter {
@@ -31,19 +22,17 @@ class StudyTimeCounter {
 		}
 		
 		didSet {
-//			x = oldValue
+			x2 = oldValue
 		}
 		 
 	}
 }
 let test = StudyTimeCounter()
 test.totalTime = 50
+x2
+// 3번 : 위와 같이 실행 시 x2의 값은?
 
-// 2번 : 위와 같이 실행 시 x2의 값은?
-
-
-
-//3번 문제 : x에는 어떤 값이 나올까요? (x는 맨 위에 선언되어 있습니다)
+//4번 문제
 let studyTimeCounter = StudyTimeCounter()
 studyTimeCounter.totalTime
 studyTimeCounter.totalTime = 1
@@ -55,9 +44,10 @@ x
 studyTimeCounter.totalTime = 3
 x
 
+//4. 각 x의 값에는 어떤 값이 할당되어 있을까요? (x는 맨 위에 선언되어 있습니다)
 
 
-
+// 5번
 @propertyWrapper
 struct SmallNumber {
 	private var maximum: Int
@@ -84,8 +74,6 @@ struct SmallNumber {
 	}
 }
 
-
-
 struct UnitRectangle {
 	@SmallNumber var height: Int = 1
 	@SmallNumber var weight: Int = 1
@@ -93,8 +81,7 @@ struct UnitRectangle {
 
 var unitRectangle = UnitRectangle()
 
-
 unitRectangle.height = 100
 print(unitRectangle.height)
-// 4번문제. 92번째 줄의 함수는 어떤 값으로 출력될까요?
+// 5번 : 위의 unitRectangle.height는 어떤 값으로 출력될까요?
 
